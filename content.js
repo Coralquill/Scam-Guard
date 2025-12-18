@@ -5,22 +5,22 @@ const pageText = document.body.innerText.slice(0, 2000);
 chrome.runtime.sendMessage(
   { text: pageText },
   (response) => {
-    // Safety check: response may be undefined if something failed
     if (!response) {
       console.error("ScamGuard: No response from background script");
       return;
     }
 
-    // If backend returned an error
     if (response.error) {
       console.error("ScamGuard backend error:", response.error);
       return;
     }
 
-    // If scam score crosses threshold, warn the user
-    if (response.scam_score >= 2) {
-      alert("⚠️ ScamGuard Warning: This site may be a scam.");
+    if (response.verdict === "Likely Scam") {
+      alert(
+        "⚠️ ScamGuard Warning\n\n" +
+        "Verdict: " + response.verdict + "\n" +
+        "Reason: " + response.reason
+      );
     }
   }
 );
-
