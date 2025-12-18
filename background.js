@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return true;
     }
   
-    fetch("http://localhost:7071/api/analyze", {
+    fetch("https://scamguard-analyze-fn-htewgxesc3cba2b2.centralindia-01.azurewebsites.net/api/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: message.text })
