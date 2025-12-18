@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return true;
     }
   
-    fetch("http://127.0.0.1:8000/analyze", {
+    fetch("http://localhost:7071/api/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: message.text })
