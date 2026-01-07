@@ -3,20 +3,26 @@
   "name": "ScamGuard",
   "version": "1.0",
   "description": "Detects scam websites using a hybrid AI backend",
+
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
+
   "host_permissions": [
     "<all_urls>"
   ],
+
   "background": {
     "service_worker": "background.js"
   },
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "run_at": "document_idle"
+      "run_at": "document_end"
     }
   ]
 }
+
